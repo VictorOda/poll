@@ -1,0 +1,26 @@
+<template name="HomeLayout">
+    <div class="row">
+        <form id="new-leaderboard" class="col s6 offset-s3 m6 offset-m3" style="text-align:center;">
+            <h3>Create poll</h3>
+            <div class="row">
+                <div class="col s9">
+                    <input name="text" placeholder="Poll Question" type="text" class="validate">
+                </div>
+                <div class="col s3">
+                    <button class="waves-effect btn indigo" type="submit">CREATE</button>
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <div class="row">
+        <div class="col s6 offset-s3 m6 offset-m3">
+            <div  class="card indigo" style="padding-top: 5px;">
+                <h5 style="text-align:center;color:white;">Poll</h5>
+                <ul class="collection">
+                    <li class="collection-item" style="height:40px;"></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</template>
