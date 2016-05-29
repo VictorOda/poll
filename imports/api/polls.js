@@ -12,7 +12,7 @@ if (Meteor.isServer) {
 }
 
 Meteor.methods({
-    'polls.insert'(question) {
+    'polls.insert'(question, option1, option2, option3) {
         check(question, String);
 
         // Make sure the user is logged in before inserting a task
@@ -23,6 +23,9 @@ Meteor.methods({
         // Insert a leaderboard into the collection
         Polls.insert({
             question,
+            option1,
+            option2,
+            option3,
             createdAt: new Date(), // current time
             userId: Meteor.userId()
         });

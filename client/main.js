@@ -83,12 +83,18 @@ Template.HomePage.events({
         // Get value from form element
         const target = e.target;
         const question = target.question.value;
+        const option1 = target.option1.value;
+        const option2 = target.option2.value;
+        const option3 = target.option3.value;
 
         // Insert a leaderboard into the collection
-        Meteor.call('polls.insert', question);
+        Meteor.call('polls.insert', question, option1, option2, option3);
 
         // Clear form
         target.question.value = '';
+        target.option1.value = '';
+        target.option2.value = '';
+        target.option3.value = '';
 
         Bert.alert('New poll \'' + question + '\' created!', 'success', 'fixed-top', 'fa-check');
     },
