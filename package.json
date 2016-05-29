@@ -6,7 +6,7 @@
     },
     "dependencies": {
         "meteor-node-stubs": "~0.2.0"
-    }
+    },
     "jshintConfig": {
         "esversion": 6
     }

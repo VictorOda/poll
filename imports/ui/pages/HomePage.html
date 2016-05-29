@@ -1,10 +1,10 @@
-<template name="HomeLayout">
+<template name="HomePage">
     <div class="row">
-        <form id="new-leaderboard" class="col s6 offset-s3 m6 offset-m3" style="text-align:center;">
+        <form id="new-poll" class="col s6 offset-s3 m6 offset-m3" style="text-align:center;">
             <h3>Create poll</h3>
             <div class="row">
                 <div class="col s9">
-                    <input name="text" placeholder="Poll Question" type="text" class="validate">
+                    <input name="question" placeholder="Question" type="text" class="validate">
                 </div>
                 <div class="col s3">
                     <button class="waves-effect btn indigo" type="submit">CREATE</button>
@@ -13,12 +13,20 @@
         </form>
     </div>
 
+    {{#each polls}}
+        {{> poll}}
+    {{/each}}
+
+</template>
+
+<template name="poll">
     <div class="row">
         <div class="col s6 offset-s3 m6 offset-m3">
             <div  class="card indigo" style="padding-top: 5px;">
-                <h5 style="text-align:center;color:white;">Poll</h5>
+                <h5 style="text-align:center;color:white;">{{question}}</h5>
                 <ul class="collection">
-                    <li class="collection-item" style="height:40px;"></li>
+                    <li class="collection-item" style="height:40px;">
+                    </li>
                 </ul>
             </div>
         </div>
