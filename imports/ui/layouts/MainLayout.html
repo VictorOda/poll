@@ -1,33 +1,41 @@
 <template name="MainLayout">
     <body>
         <header>
-            <nav class="indigo">
-                <div class="nav-wrapper" style="margin-left:20px; margin-right: 20px;">
-                    <a href="#" class="brand-logo">Polls</a>
-                    <ul id="nav-mobile" class="right hide-on-med-and-down">
-                        {{#if isLoggedIn}}
-                        <li><a id="logout">Log Out</a></li>
-                        {{else}}
-                        <li><a href="/login">Log In</a></li>
-                        <li><a href="/signin">Sign Up</a></li>
-                        {{/if}}
-                    </ul>
+            <nav class="navbar navbar-default navbar-fixed-top">
+                <div class="container-fluid">
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        <a class="navbar-brand" href="#">Polls</a>
+                    </div>
+
+                    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                        <ul class="nav navbar-nav navbar-right">
+                            {{#if isLoggedIn}}
+                            <li><a class="nav-item" id="logout" href="#">Log Out</a></li>
+                            {{else}}
+                            <li><a class="nav-item" href="/login">Log In</a></li>
+                            <li><a class="nav-item" href="/signin">Sign Up</a></li>
+                            {{/if}}
+                        </ul>
+                    </div>
                 </div>
             </nav>
         </header>
 
         <main>
-            <div id="content">
+            <div id="content" style="margin-top:50px;">
                 {{> Template.dynamic template=main}}
             </div>
         </main>
 
-        <footer class="page-footer indigo">
-            <div class="footer-copyright">
-                <div class="container">
-                    © 2016 Copyright Text
-                    <a class="grey-text text-lighten-4 right" href="#!">More Links</a>
-                </div>
+        <footer class="footer" >
+            <div class="container" style="height:inherit;">
+                <p class="text-muted" style="vertical-align:middle;display:table-cell;height:inherit;">© 2016 Copyright Text</p>
             </div>
         </footer>
     </body>

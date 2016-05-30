@@ -6,8 +6,6 @@ import { check } from 'meteor/check';
 import { FlowRouter } from 'meteor/kadira:flow-router';
 import { Accounts } from 'meteor/accounts-base';
 
-import { Bert } from 'meteor/themeteorchef:bert';
-
 import { Polls } from '../imports/api/polls.js';
 
 import '../imports/ui/layouts/MainLayout.html';
@@ -36,10 +34,10 @@ Template.SignUpPage.events({
             Accounts.createUser({ email: email, password: password }, (err) => {
                 if (err) {
                     console.log(err);
-                    Bert.alert(err.reason, 'danger', 'fixed-top', 'fa-remove');
+                    // Bert.alert(err.reason, 'danger', 'fixed-top', 'fa-remove');
                 } else {
                     console.log('success!');
-                    Bert.alert('Account successfully created!', 'success', 'fixed-top', 'fa-check');
+                    // Bert.alert('Account successfully created!', 'success', 'fixed-top', 'fa-check');
                     FlowRouter.go('/');
                 }
             });
@@ -60,10 +58,10 @@ Template.LogInPage.events({
         // Try to login
         Meteor.loginWithPassword(email, password, (err) => {
             if(err) {
-                Bert.alert(err.reason, 'danger', 'fixed-top', 'fa-remove');
+                // Bert.alert(err.reason, 'danger', 'fixed-top', 'fa-remove');
             } else {
                 console.log('success!');
-                Bert.alert('User successfully logged in!', 'success', 'fixed-top', 'fa-check');
+                // Bert.alert('User successfully logged in!', 'success', 'fixed-top', 'fa-check');
                 FlowRouter.go('/');
             }
         });
@@ -96,6 +94,6 @@ Template.HomePage.events({
         target.option2.value = '';
         target.option3.value = '';
 
-        Bert.alert('New poll \'' + question + '\' created!', 'success', 'fixed-top', 'fa-check');
+        // Bert.alert('New poll \'' + question + '\' created!', 'success', 'fixed-top', 'fa-check');
     },
 });
