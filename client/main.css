@@ -14,3 +14,19 @@ footer {
     height: 100px;
     background-color: #eeeeee;
 }
+
+.panel {
+    border-color: black;
+}
+
+.panel > .panel-heading {
+    background-image: none;
+    background-color: black;
+    color: white;
+
+}
+
+.btn {
+    background-color: black;
+    color: white;
+}
