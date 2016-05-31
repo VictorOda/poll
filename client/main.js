@@ -68,6 +68,10 @@ Template.LogInPage.events({
     },
 });
 
+Template.HomePage.onCreated(() => {
+    Meteor.subscribe('polls');
+});
+
 Template.HomePage.helpers({
     polls() {
         return Polls.find();
