@@ -97,7 +97,26 @@ Template.HomePage.events({
         target.option1.value = '';
         target.option2.value = '';
         target.option3.value = '';
+    },
+});
 
-        // Bert.alert('New poll \'' + question + '\' created!', 'success', 'fixed-top', 'fa-check');
+Template.poll.helpers({
+    isSelected() {
+        return Session.get(this._id) !== undefined;
+    },
+});
+
+Template.poll.events({
+    'click #option1'() {
+        Session.set(this._id, '1');
+    },
+    'click #option2'() {
+        Session.set(this._id, '2');
+    },
+    'click #option3'() {
+        Session.set(this._id, '3');
+    },
+    'click button'() {
+            
     },
 });
