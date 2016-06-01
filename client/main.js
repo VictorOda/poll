@@ -117,6 +117,6 @@ Template.poll.events({
         Session.set(this._id, '3');
     },
     'click button'(e) {
-
+        Meteor.call('polls.addVote', this._id, Session.get(this._id));
     },
 });

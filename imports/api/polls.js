@@ -26,6 +26,9 @@ Meteor.methods({
             option1,
             option2,
             option3,
+            option1Votes: 0,
+            option2Votes: 0,
+            option3Votes: 0,
             createdAt: new Date(), // current time
             userId: Meteor.userId()
         });
@@ -33,5 +36,20 @@ Meteor.methods({
     'polls.remove'(pollId) {
         check(pollId, String);
         Polls.remove(pollId);
+    },
+    'polls.addVote'(pollId, option) {
+        check(option, String);
+        switch (option) {
+            case '1':
+                Polls.update(pollId, {$inc: {option1Votes: 1} });
+                break;
+            case '2':
+                Polls.update(pollId, {$inc: {option2Votes: 1} });
+                break;
+            case '3':
+                Polls.update(pollId, {$inc: {option3Votes: 1} });
+                break;
+            default:
+        }
     },
 });
