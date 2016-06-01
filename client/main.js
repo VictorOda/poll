@@ -107,16 +107,16 @@ Template.poll.helpers({
 });
 
 Template.poll.events({
-    'click #option1'() {
+    'click #option1'(e) {
         Session.set(this._id, '1');
     },
-    'click #option2'() {
+    'click #option2'(e) {
         Session.set(this._id, '2');
     },
-    'click #option3'() {
+    'click #option3'(e) {
         Session.set(this._id, '3');
     },
-    'click button'() {
-            
+    'click button'(e) {
+
     },
 });

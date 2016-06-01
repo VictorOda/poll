@@ -1,5 +1,5 @@
 <template name="HomePage">
-    <div class="container-fluid">
+    <div class="container-fluid" style="background-color:#cdcaca;margin-bottom:20px;">
         <form id="new-poll" class="col-sm-8 col-sm-offset-2">
             <h3>Create poll</h3>
             <div class="form-group">
@@ -26,7 +26,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-sm-2 col-sm-offset-5" style="margin-bottom:20px;">
+            <div style="margin-bottom:15px;text-align:center;">
                 <button class="btn" type="submit">CREATE</button>
             </div>
         </form>
@@ -39,38 +39,28 @@
 </template>
 
 <template name="poll">
-        <div class="container-fluid col-sm-8 col-sm-offset-2">
-            <div class="panel" style="margin-bottom:10px;">
-                <div class="panel-heading" style="text-align:center;">{{question}}</div>
-                <div class="table-responsive">
-                    <table class="table table-striped table-bordered">
-                        <tbody>
-                            <tr>
-                                <td>
-                                    <input type="radio" name={{_id}} id="option1" style="margin-right:4px;">
-                                    {{option1}}
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <input type="radio" name={{_id}} id="option2" style="margin-right:4px;">
-                                    {{option2}}
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <input type="radio" name={{_id}} id="option3" style="margin-right:4px;">
-                                    {{option3}}
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-            {{#if isSelected}}
-            <div style="text-align:center;margin-bottom:20px;">
-                <button class="btn" type="click">ANSWER</button>
-            </div>
-            {{/if}}
+    <div class="container-fluid col-sm-6 col-sm-offset-3" style="margin-bottom:20px;">
+        <div class="panel" style="margin-bottom:0px;">
+            <div class="panel-heading" style="text-align:center;">{{question}}</div>
+            <ul class="list-group">
+                <li class="list-group-item">
+                    <input type="radio" name={{_id}} id="option1" style="margin-right:4px;">
+                    {{option1}}
+                </li>
+                <li class="list-group-item">
+                    <input type="radio" name={{_id}} id="option2" style="margin-right:4px;">
+                    {{option2}}
+                </li>
+                <li class="list-group-item">
+                    <input type="radio" name={{_id}} id="option3" style="margin-right:4px;">
+                    {{option3}}
+                </li>
+            </ul>
         </div>
+        {{#if isSelected}}
+        <div style="text-align:center;margin-top:10px;">
+            <button class="btn" type="click">ANSWER</button>
+        </div>
+        {{/if}}
+    </div>
 </template>
