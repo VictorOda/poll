@@ -7,6 +7,7 @@ import { FlowRouter } from 'meteor/kadira:flow-router';
 import { Accounts } from 'meteor/accounts-base';
 
 import { Polls } from '../imports/api/polls.js';
+import { Votes } from '../imports/api/votes.js';
 
 import '../imports/ui/layouts/MainLayout.html';
 import '../imports/ui/pages/HomePage.html';
@@ -70,6 +71,7 @@ Template.LogInPage.events({
 
 Template.HomePage.onCreated(() => {
     Meteor.subscribe('polls');
+    Meteor.subscribe('votes');
 });
 
 Template.HomePage.helpers({
@@ -102,7 +104,13 @@ Template.HomePage.events({
 
 Template.poll.helpers({
     isSelected() {
-        return Session.get(this._id) !== undefined;
+        const vote = Votes.findOne({pollId: this._id});
+
+        if(!vote && Session.get(this._id) !== undefined) {
+            return true;
+        } else {
+            return false;
+        }
     },
     isChecked1() {
         const checked = {checked: "checked"};
@@ -145,5 +153,6 @@ Template.poll.events({
     },
     'click button'(e) {
         Meteor.call('polls.addVote', this._id, Session.get(this._id));
+        Meteor.call('votes.insert', this._id, Session.get(this._id));
     },
 });

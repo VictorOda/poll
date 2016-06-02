@@ -14,13 +14,16 @@ if (Meteor.isServer) {
 Meteor.methods({
     'polls.insert'(question, option1, option2, option3) {
         check(question, String);
+        check(option1, String);
+        check(option2, String);
+        check(option3, String);
 
-        // Make sure the user is logged in before inserting a task
+        // Make sure the user is logged in before inserting a poll
         if (! this.userId) {
-          throw new Meteor.Error('not-authorized');
+            throw new Meteor.Error('not-authorized');
         }
 
-        // Insert a leaderboard into the collection
+        // Insert a poll into the collection
         Polls.insert({
             question,
             option1,
