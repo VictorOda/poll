@@ -104,17 +104,41 @@ Template.poll.helpers({
     isSelected() {
         return Session.get(this._id) !== undefined;
     },
+    isChecked1() {
+        const checked = {checked: "checked"};
+        return Session.get(this._id) === '1' ? checked : {};
+    },
+    isChecked2() {
+        const checked = {checked: "checked"};
+        return Session.get(this._id) === '2' ? checked : {};
+    },
+    isChecked3() {
+        const checked = {checked: "checked"};
+        return Session.get(this._id) === '3' ? checked : {};
+    },
 });
 
 Template.poll.events({
     'click #option1'(e) {
-        Session.set(this._id, '1');
+        if(Session.get(this._id) === '1') {
+            Session.set(this._id, undefined);
+        } else {
+            Session.set(this._id, '1');
+        }
     },
     'click #option2'(e) {
-        Session.set(this._id, '2');
+        if(Session.get(this._id) === '2') {
+            Session.set(this._id, undefined);
+        } else {
+            Session.set(this._id, '2');
+        }
     },
     'click #option3'(e) {
-        Session.set(this._id, '3');
+        if(Session.get(this._id) === '3') {
+            Session.set(this._id, undefined);
+        } else {
+            Session.set(this._id, '3');
+        }
     },
     'click button'(e) {
         Meteor.call('polls.addVote', this._id, Session.get(this._id));
