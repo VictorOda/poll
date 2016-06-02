@@ -116,6 +116,9 @@ Template.poll.helpers({
         const checked = {checked: "checked"};
         return Session.get(this._id) === '3' ? checked : {};
     },
+    // hasVoted() {
+    //     return
+    // }
 });
 
 Template.poll.events({
