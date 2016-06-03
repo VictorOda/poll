@@ -32,6 +32,7 @@ Meteor.methods({
             option1Votes: 0,
             option2Votes: 0,
             option3Votes: 0,
+            isPublic: false,
             createdAt: new Date(), // current time
             userId: Meteor.userId()
         });
@@ -55,4 +56,10 @@ Meteor.methods({
             default:
         }
     },
+    'polls.isPublic'(pollId, isPublic) {
+        check(pollId, String);
+        check(isPublic, Boolean);
+
+        Polls.update(pollId, {$set: {isPublic: !isPublic}});
+    }
 });

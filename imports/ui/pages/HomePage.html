@@ -41,7 +41,13 @@
 <template name="poll">
     <div class="container-fluid col-sm-6 col-sm-offset-3" style="margin-bottom:20px;">
         <div class="panel" style="margin-bottom:0px;">
-            <div class="panel-heading" style="text-align:center;">{{question}}</div>
+            <div class="panel-heading">
+                {{question}}
+                <div style="float:right;font-weight:bold;">
+                    Public
+                    <input type="checkbox" id="isPublic" {{isPublic}} style="margin-left:5px;">
+                </div>
+            </div>
             <ul class="list-group">
                 <li class="list-group-item">
                     <input type="radio" name={{_id}} id="option1" style="margin-right:4px;" {{isChecked1}}>

@@ -124,9 +124,12 @@ Template.poll.helpers({
         const checked = {checked: "checked"};
         return Session.get(this._id) === '3' ? checked : {};
     },
-    // hasVoted() {
-    //     return
-    // }
+    isPublic() {
+        const poll = Polls.findOne(this._id);
+
+        const isPublic = {checked: "checked"};
+        return poll.isPublic ? isPublic : {};
+    },
 });
 
 Template.poll.events({
@@ -155,4 +158,8 @@ Template.poll.events({
         Meteor.call('polls.addVote', this._id, Session.get(this._id));
         Meteor.call('votes.insert', this._id, Session.get(this._id));
     },
+    'click #isPublic'(e) {
+        const poll = Polls.findOne(this._id);
+        Meteor.call('polls.isPublic', this._id, poll.isPublic);
+    }
 });
