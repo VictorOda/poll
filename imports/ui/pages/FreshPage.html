@@ -1,0 +1,48 @@
+<template name="FreshPage">
+    <div class="container-fluid" style="background-color:#cdcaca;margin-bottom:20px;text-align:center;">
+        <h3 style="margin-bottom:20px;">Fresh</h3>
+    </div>
+    <div class="container-fluid">
+        {{#each polls}}
+            {{> pollFresh}}
+        {{/each}}
+    </div>
+
+
+    <div style="margin-bottom:15px;text-align:center;">
+        <button class="btn" type="submit">LOAD MORE</button>
+    </div>
+
+</template>
+
+<template name="pollFresh">
+    <div class="container-fluid col-sm-6 col-sm-offset-3" style="margin-bottom:20px;">
+        <div class="panel" style="margin-bottom:0px;">
+            <div class="panel-heading">
+                {{question}}
+            </div>
+            <ul class="list-group">
+                <li class="list-group-item">
+                    <input type="radio" name={{_id}} id="option1" style="margin-right:4px;" {{isChecked1}}>
+                    {{option1}}
+                    <div style="float:right;font-weight:bold;">{{option1Votes}}</div>
+                </li>
+                <li class="list-group-item">
+                    <input type="radio" name={{_id}} id="option2" style="margin-right:4px;" {{isChecked2}}>
+                    {{option2}}
+                    <div style="float:right;font-weight:bold;">{{option2Votes}}</div>
+                </li>
+                <li class="list-group-item">
+                    <input type="radio" name={{_id}} id="option3" style="margin-right:4px;" {{isChecked3}}>
+                    {{option3}}
+                    <div style="float:right;font-weight:bold;">{{option3Votes}}</div>
+                </li>
+            </ul>
+        </div>
+        {{#if isSelected}}
+        <div style="text-align:center;margin-top:10px;">
+            <button class="btn" type="click">ANSWER</button>
+        </div>
+        {{/if}}
+    </div>
+</template>

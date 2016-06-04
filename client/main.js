@@ -11,6 +11,7 @@ import { Votes } from '../imports/api/votes.js';
 
 import '../imports/ui/layouts/MainLayout.html';
 import '../imports/ui/pages/HomePage.html';
+import '../imports/ui/pages/FreshPage.html';
 
 Template.MainLayout.helpers({
     isLoggedIn() {
@@ -133,6 +134,90 @@ Template.poll.helpers({
 });
 
 Template.poll.events({
+    'click #option1'(e) {
+        if(Session.get(this._id) === '1') {
+            Session.set(this._id, undefined);
+        } else {
+            Session.set(this._id, '1');
+        }
+    },
+    'click #option2'(e) {
+        if(Session.get(this._id) === '2') {
+            Session.set(this._id, undefined);
+        } else {
+            Session.set(this._id, '2');
+        }
+    },
+    'click #option3'(e) {
+        if(Session.get(this._id) === '3') {
+            Session.set(this._id, undefined);
+        } else {
+            Session.set(this._id, '3');
+        }
+    },
+    'click button'(e) {
+        Meteor.call('polls.addVote', this._id, Session.get(this._id));
+        Meteor.call('votes.insert', this._id, Session.get(this._id));
+    },
+    'click #isPublic'(e) {
+        const poll = Polls.findOne(this._id);
+        Meteor.call('polls.isPublic', this._id, poll.isPublic);
+    }
+});
+
+Template.FreshPage.onCreated(() => {
+    Meteor.subscribe('polls');
+    Meteor.subscribe('votes');
+    Session.set('poll-limit', 10);
+});
+
+Template.FreshPage.helpers({
+    polls() {
+        const pollLimit = parseInt(Session.get('poll-limit'));
+        return Polls.find({}, {sort: {createdAt: -1}, limit: pollLimit});
+    },
+});
+
+Template.FreshPage.events({
+    'click button'(e) {
+        e.preventDefault();
+        const currentLimit = parseInt(Session.get('poll-limit'));
+        Session.set('poll-limit', currentLimit + 10);
+        console.log("LOAD MORE: " + Session.get('poll-limit'));
+    },
+});
+
+Template.pollFresh.helpers({
+    isSelected() {
+        const vote = Votes.findOne({pollId: this._id});
+        console.log(Session.get(this._id));
+        if(!vote && Session.get(this._id) !== undefined) {
+            return true;
+        } else {
+            return false;
+        }
+    },
+    isChecked1() {
+        const checked = {checked: "checked"};
+        return Session.get(this._id) === '1' ? checked : {};
+    },
+    isChecked2() {
+        const checked = {checked: "checked"};
+        return Session.get(this._id) === '2' ? checked : {};
+    },
+    isChecked3() {
+        const checked = {checked: "checked"};
+        return Session.get(this._id) === '3' ? checked : {};
+    },
+    isPublic() {
+        const poll = Polls.findOne(this._id);
+
+        const isPublic = {checked: "checked"};
+        return poll.isPublic ? isPublic : {};
+    },
+});
+
+Template.pollFresh.events({
     'click #option1'(e) {
         if(Session.get(this._id) === '1') {
             Session.set(this._id, undefined);
